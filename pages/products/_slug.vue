@@ -836,7 +836,7 @@ export default {
     const homePage = await $swell.settings.get('store.homePage');
     const slug = $route.params.slug || homePage || 'home';
 
-    const page = await $swell.content.get('pages', `/${slug}`);
+    const page = await $swell.content.get('pages', `/content-${slug}`);
 
     if (!page) {
       return;

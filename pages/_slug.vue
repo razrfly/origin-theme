@@ -58,8 +58,10 @@ export default {
 
     const page = await $swell.content.get('pages', slug);
 
+    const containsContent = slug.includes('content');
+
     // Show 404 if page data isn't found
-    if (!page) {
+    if (!page || containsContent) {
       return this.$nuxt.error({ statusCode: 404 });
     }
 
