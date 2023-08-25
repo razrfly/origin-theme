@@ -1,4 +1,5 @@
 {
+  "id": "page_content",
   "name": "Page",
   "slug": "page",
   "model": "content/pages",

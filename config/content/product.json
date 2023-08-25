@@ -73,7 +73,8 @@
     },
     {
       "id": "sections",
-      "type": "content/pages"
+      "label": "Sections for product",
+      "model": "page_content"
     }
   ],
   "source_type": "theme",
