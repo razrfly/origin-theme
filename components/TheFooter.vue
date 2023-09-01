@@ -121,11 +121,11 @@
         <p class="my-3 text-sm">
           <span>©{{ currentYear }} {{ store.name }}.</span> Powered by
           <a
-            id="powered-by-swell"
-            href="https://www.swell.is/"
-            title="Headless ecommerce platform for brands"
+            id="powered-by-cirqus"
+            href="https://www.cirqus.co/"
+            title="The most powerful events platform"
             class="text-current"
-            >Swell</a
+            >Cirqus</a
           >
         </p>
         <!-- Secondary nav menu -->
