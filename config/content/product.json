@@ -131,6 +131,44 @@
       "admin_zone": "content"
     },
     {
+      "id": "brand_details",
+      "label": "Brand Details",
+      "type": "collection",
+      "fields": [
+        {
+          "id": "name",
+          "label": "Name",
+          "type": "text",
+          "required": true,
+          "localized": false
+        },
+        {
+          "id": "description",
+          "label": "Description",
+          "type": "long_text",
+          "required": false,
+          "localized": true
+        },
+        {
+          "id": "logo_url",
+          "label": "Logo link",
+          "type": "text",
+          "ui": "url",
+          "required": false,
+          "localized": false
+        },
+        {
+          "id": "website_url",
+          "label": "Website link",
+          "type": "text",
+          "ui": "url",
+          "required": false,
+          "localized": false
+        }
+      ],
+      "admin_zone": "content"
+    },
+    {
       "id": "previous_customers",
       "label": "Previous Customers",
       "type": "collection",
