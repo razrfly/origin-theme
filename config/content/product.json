@@ -191,6 +191,54 @@
       ]
     },
     {
+      "id": "brand_customers",
+      "label": "Brand Customers",
+      "type": "collection",
+      "fields": [
+        {
+          "id": "name",
+          "label": "Customer name",
+          "type": "text",
+          "required": true,
+          "localized": false
+        },
+        {
+          "id": "logo_url",
+          "label": "Logo link",
+          "type": "text",
+          "ui": "url",
+          "required": true,
+          "localized": false
+        }
+      ],
+      "default": [
+        {
+          "name": "Cisco",
+          "logo_url": "https://cdn.swell.store/cirqus/64eb2f3eb52f5a0012d4e223/464d94a17e41ca6c3aaae4c04fd90435/5f59df3781d4268a1d2cdac8_1920px-Cisco_logo.svg-p-500 (1).png"
+        },
+        {
+          "name": "Discord",
+          "logo_url": "https://cdn.swell.store/cirqus/64eb2edea0a70b001225cf07/4290c5590d65d320a94f15e8515c62ff/6135ef606048e449a9b2e2c4_Discord_Logo-1.png"
+        },
+        {
+          "name": "JustEat",
+          "logo_url": "https://cdn.swell.store/cirqus/64eb2f190ea34c0012d66b22/ccc479d1ee1153801c9e84b22762747b/60a782fc8541af5565551eed_just-eat-orange-logo.png"
+        },
+        {
+          "name": "Giphy",
+          "logo_url": "https://cdn.swell.store/cirqus/64eb2ed231d6200012e282fa/e737faa42c0dedc61f720240bdd6e2f4/617bc250c78c590676253d2e_Giphy-logo.png"
+        },
+        {
+          "name": "Activision",
+          "logo_url": "https://cdn.swell.store/cirqus/64eb2eec1a5004001206e22c/08549de553629cbaf45caeb916428ee5/60a77c572aef65b934b34207_1200px-Activision.svg-p-500 (1).png"
+        },
+        {
+          "name": "Etsy",
+          "logo_url": "https://cdn.swell.store/cirqus/64eb2f1d95babd0012728b2c/cdade84803b0494e17aa105c24be3409/5fb7c95f5e7802e17c73c3a2_1280px-Etsy_logo.svg-p-800 (1).png"
+        }
+      ]
+    },
+    {
       "id": "product_reviews",
       "label": "Product Reviews",
       "type": "collection",
