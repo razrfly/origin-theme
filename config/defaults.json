@@ -58,35 +58,35 @@
   "social_links": {
     "twitter": {
       "show": true,
-      "url": ""
+      "url": "https://twitter.com/evenchilada"
     },
     "facebook": {
       "show": true,
-      "url": ""
+      "url": "https://www.facebook.com/evenchilada"
     },
     "pinterest": {
-      "show": true,
+      "show": false,
       "url": ""
     },
     "instagram": {
       "show": true,
-      "url": ""
+      "url": "https://instagram.com/evenchilada_"
     },
     "youtube": {
       "show": true,
-      "url": ""
+      "url": "https://youtube.com/@evenchilada"
     },
     "vimeo": {
-      "show": true,
+      "show": false,
       "url": ""
     },
     "whatsapp": {
-      "show": true,
+      "show": false,
       "url": ""
     }
   },
   "product_list": {
-    "enable_quick_add": true
+    "enable_quick_add": false
   },
   "account": {
     "subscriptions": {
