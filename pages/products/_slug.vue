@@ -34,7 +34,7 @@
               </div>
 
               <div
-                :class="`grid gap-4 overflow-auto grid-cols-${mediaFilesColumns}`"
+                :class="`grid grid-flow-col gap-4 overflow-auto grid-cols-${mediaFilesColumns}`"
               >
                 <div
                   v-if="productVideo"
@@ -92,15 +92,15 @@
           </div>
 
           <!-- Store features -->
+          <!-- product benefits -->
           <div class="mt-8 hidden md:block">
-            <ul class="flex flex-wrap gap-x-6">
+            <ul class="relative flex flex-wrap gap-x-6">
               <li
                 v-for="(benefit, index) in productBenefits"
                 :key="'storeProductBenefit' + index"
-                class="label-sm my-2 flex"
+                class="label-sm my-2 flex cursor-pointer"
               >
-                <BaseIcon :icon="benefit.icon" size="sm" class="mr-2 -mb-1" />
-                <span>{{ benefit.text }}</span>
+                <ProductBenefit :benefit="benefit" />
               </li>
             </ul>
           </div>
@@ -544,39 +544,37 @@
                 </div>
               </div>
 
-              <div class="my-8 flex flex-col gap-4 lg:flex-row">
+              <!-- brandDetails -->
+              <div
+                v-if="brandDetails"
+                class="my-8 flex flex-col gap-4 lg:flex-row"
+              >
                 <!-- for logo -->
                 <div class="max-w-24 flex-shrink-0">
-                  <img
-                    class="block h-full w-full object-contain"
-                    src="/evenchilada-taco.png"
-                    alt="brand logo"
-                  />
+                  <a :href="`https://${brandDetails.websiteUrl}`">
+                    <img
+                      class="block h-full w-full object-contain"
+                      :src="brandDetails.logoUrl"
+                      :alt="`${brandDetails.name} logo`"
+                    />
+                  </a>
                 </div>
 
                 <p class="text-base/tight md:text-lg/tight text-primary-darker">
-                  Evenchilada is a diverse offering of events that can all be
-                  mixed and matched to achieve the most unique event experience
-                  around. Evenchilada offers different types of trivia, bingo,
-                  murder mysteries, workshops, and games that are available
-                  in-person, hybridly, or virtually.
+                  {{ brandDetails.description }}
                 </p>
               </div>
 
               <!-- Store features -->
+              <!-- product benefits -->
               <div class="my-8 md:hidden">
-                <ul class="flex flex-wrap gap-x-6">
+                <ul class="relative flex flex-wrap gap-x-6">
                   <li
                     v-for="(benefit, index) in productBenefits"
                     :key="'storeProductBenefit' + index"
-                    class="label-sm my-2 flex"
+                    class="label-sm my-2 flex cursor-pointer"
                   >
-                    <BaseIcon
-                      :icon="benefit.icon"
-                      size="sm"
-                      class="mr-2 -mb-1"
-                    />
-                    <span>{{ benefit.text }}</span>
+                    <ProductBenefit :benefit="benefit" />
                   </li>
                 </ul>
               </div>
@@ -662,6 +660,28 @@
       </div>
     </section>
 
+    <section v-if="randomPreviousCustomers" class="container my-12">
+      <p class="text-center text-sm uppercase text-primary-dark">
+        brands that loved this product
+      </p>
+
+      <div
+        class="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 md:mt-12 md:grid-cols-3 md:gap-x-12 md:gap-y-6 lg:flex lg:items-center lg:gap-x-15"
+      >
+        <div
+          v-for="client in randomPreviousCustomers"
+          :key="client.id"
+          class="h-12"
+        >
+          <img
+            class="h-full object-contain"
+            :src="client.logoUrl"
+            :alt="`${client.name} logo`"
+          />
+        </div>
+      </div>
+    </section>
+
     <section v-if="upsellProducts" class="container mb-12">
       <h2 class="mb-12">{{ $t('products._slug.upSell.title') }}</h2>
       <ProductPreviews
@@ -669,6 +689,44 @@
         :slider="true"
         :column-count="upsellProductCols"
       />
+    </section>
+
+    <section v-if="productReviews" class="container mb-12">
+      <ProductReviews
+        :reviews="productReviews"
+        :slider="true"
+        :column-count="3"
+      />
+    </section>
+
+    <section v-if="randomBrandCustomers" class="container my-12">
+      <div
+        class="space-y-4 bg-primary-light p-6 md:grid md:grid-cols-2 md:items-center md:gap-15 md:space-y-0 md:p-12 lg:p-15 xl:gap-18"
+      >
+        <h2
+          class="mb-0 text-3xl font-semibold uppercase text-primary-darkest md:text-4xl lg:text-5xl xl:text-6xl"
+        >
+          Over <b class="font-black text-accent-default">100 000+</b> managed
+          events & <b class="font-black text-accent-default">2.5M+</b> happy
+          players!
+        </h2>
+
+        <div
+          class="grid grid-cols-2 gap-x-4 gap-y-2 md:grid-cols-3 md:gap-x-12 md:gap-y-6 xl:gap-x-15 xl:gap-y-10"
+        >
+          <div
+            v-for="client in randomBrandCustomers"
+            :key="client.id"
+            class="h-10 md:h-12"
+          >
+            <img
+              class="h-full object-contain"
+              :src="client.logoUrl"
+              :alt="`${client.name} logo`"
+            />
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 </template>
@@ -723,6 +781,11 @@ export default {
       videoInfo: null,
       isPopupSliderOpen: false,
       activeSlide: -1,
+
+      brandDetails: null,
+      brandCustomers: null,
+      previousCustomers: null,
+      productReviews: null,
     };
   },
   async fetch() {
@@ -796,6 +859,41 @@ export default {
     this.enableQuantity = get(product, 'content.enableQuantity');
     this.upsellProductCols = get(product, 'content.upSellCols') || 4;
     this.maxQuantity = maxQuantity;
+
+    //* brandDetails
+
+    if (
+      this.product.content.brandDetails &&
+      this.product.content.brandDetails.length > 0
+    ) {
+      this.brandDetails = this.product.content.brandDetails[0];
+    }
+
+    //* previousCustomer
+
+    if (
+      this.product.content.previousCustomers &&
+      this.product.content.previousCustomers.length > 0
+    ) {
+      this.previousCustomers = this.product.content.previousCustomers;
+    }
+
+    //* brandCustomers
+
+    if (
+      this.product.content.brandCustomers &&
+      this.product.content.brandCustomers.length > 0
+    ) {
+      this.brandCustomers = this.product.content.brandCustomers;
+    }
+
+    //* productReviews
+    if (
+      this.product.content.productReviews &&
+      this.product.content.productReviews.length > 0
+    ) {
+      this.productReviews = this.product.content.productReviews;
+    }
   },
   computed: {
     ...mapState(['cartIsUpdating', 'headerIsVisible', 'currency']),
@@ -874,7 +972,7 @@ export default {
 
     // generate media object with thumbnailImage and otherMedia
     productMedia() {
-      if (!this.product?.images?.length && !this.attributes?.youtubeUrl)
+      if (!this.product?.images?.length && !this.product?.content.youtubeUrl)
         return null;
 
       const [thumbnailImage, ...otherImages] = this.product.images;
@@ -1011,6 +1109,62 @@ export default {
         return optionInputs;
       }, []);
     },
+
+    // random previous clients
+    randomPreviousCustomers() {
+      if (!this.previousCustomers || this.previousCustomers.length < 3) {
+        return null;
+      }
+
+      const customers = this.previousCustomers;
+
+      const uniqueNames = [];
+
+      const unique = customers.filter((customer) => {
+        const isDuplicate = uniqueNames.includes(customer.name);
+
+        if (!isDuplicate) {
+          uniqueNames.push(customer.name);
+
+          return true;
+        }
+
+        return false;
+      });
+
+      // random array
+      const random = unique.sort(() => 0.5 - Math.random()).slice(0, 6);
+
+      return random;
+    },
+
+    // random previous clients
+    randomBrandCustomers() {
+      if (!this.brandCustomers || this.brandCustomers.length === 0) {
+        return null;
+      }
+
+      const customers = this.brandCustomers;
+
+      const uniqueNames = [];
+
+      const unique = customers.filter((customer) => {
+        const isDuplicate = uniqueNames.includes(customer.name);
+
+        if (!isDuplicate) {
+          uniqueNames.push(customer.name);
+
+          return true;
+        }
+
+        return false;
+      });
+
+      // random array
+      const random = unique.sort(() => 0.5 - Math.random()).slice(0, 6);
+
+      return random;
+    },
   },
   watch: {
     currency: '$fetch',
@@ -1022,7 +1176,7 @@ export default {
       this.exposeProduct(newVariation);
     },
     product(newProduct) {
-      if (newProduct.attributes?.youtubeUrl) {
+      if (newProduct.content?.youtubeUrl) {
         this.generateVideoInfo();
       }
     },
@@ -1237,19 +1391,19 @@ export default {
       return img?.file?.url.toLowerCase().includes('thumbnail');
     },
     generateVideoInfo() {
-      const youtubeUrl = this?.product?.attributes?.youtubeUrl;
+      const youtubeUrl = this?.product?.content?.youtubeUrl;
       if (!youtubeUrl) {
         return;
       }
       const videoInfo = {
-        id: youtubeUrl.id,
-        videoUrl: youtubeUrl.value,
+        id: 'youtube_url',
+        videoUrl: youtubeUrl,
         videoId: '',
         thumbnailUrl: '',
         isVideo: true,
       };
 
-      const youtubeVideoId = youtubeUrl.value.split('/').pop();
+      const youtubeVideoId = youtubeUrl.split('/').pop();
       if (youtubeVideoId) {
         videoInfo.thumbnailUrl = `//img.youtube.com/vi/${youtubeVideoId}/0.jpg`;
         videoInfo.videoId = youtubeVideoId;
