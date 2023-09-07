@@ -23,12 +23,36 @@
     "logo_width": 225,
     "logo_position": "left",
     "menu": "header",
-    "logo": "",
+    "logo": {
+      "file": {
+        "id": "64f997c7e9e6c50012d29505",
+        "date_uploaded": "2023-09-07T09:28:39.784Z",
+        "length": 19992,
+        "md5": "f2740eeb8cbaf252e9618591e76f242a",
+        "filename": null,
+        "content_type": "image/png",
+        "url": "https://cdn.swell.store/cirqus/64f997c7e9e6c50012d29505/f2740eeb8cbaf252e9618591e76f242a",
+        "width": 294,
+        "height": 72
+      }
+    },
     "show_promo": false,
     "promo_text": "",
     "promo_url": "",
     "hide_on_scroll": true,
-    "favicon": "",
+    "favicon": {
+      "file": {
+        "id": "64f9981dd9785a00128c288d",
+        "date_uploaded": "2023-09-07T09:30:05.031Z",
+        "length": 45808,
+        "md5": "8ad767afaad34018c267dfa952db76d8",
+        "filename": null,
+        "content_type": "image/png",
+        "url": "https://cdn.swell.store/cirqus/64f9981dd9785a00128c288d/8ad767afaad34018c267dfa952db76d8",
+        "width": 192,
+        "height": 192
+      }
+    },
     "locale": {
       "display": "flag",
       "hide_flag": false
@@ -36,6 +60,12 @@
     "currency": {
       "display": "symbol-code",
       "hide_symbol": false
+    }
+  },
+  "scripts": {
+    "global": {
+      "head": "<!-- Ortto cirqus capture code -->\n<script>\n    window.ap3c = window.ap3c || {};\n    var ap3c = window.ap3c;\n    ap3c.cmd = ap3c.cmd || [];\n    ap3c.cmd.push(function() {\n        ap3c.init('Y2Tec7kauyws4HPCY2lycXVz', 'https://click.cirqus.co/');\n        ap3c.track({v: 0});\n    });\n    ap3c.activity = function(act) { ap3c.act = (ap3c.act || []); ap3c.act.push(act); };\n    var s, t; s = document.createElement('script'); s.type = 'text/javascript'; s.src = \"https://click.cirqus.co/app.js\";\n    t = document.getElementsByTagName('script')[0]; t.parentNode.insertBefore(s, t);\n</script>",
+      "body": ""
     }
   },
   "footer": {
