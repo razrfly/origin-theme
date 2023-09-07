@@ -29,6 +29,17 @@
       </div>
     </template>
 
+    <div class="checkbox my-4 flex justify-start">
+      <input id="decide-later" v-model="isDecideLater" type="checkbox" />
+
+      <label class="" for="decide-later">
+        <div class="indicator mr-2 text-primary-lighter">
+          <BaseIcon icon="uil:check" size="sm" />
+        </div>
+        <p class="text-sm">or you can decide the date later</p>
+      </label>
+    </div>
+
     <transition v-if="isOpenModal" name="popup" :duration="700" appear>
       <div class="fixed inset-0 z-100">
         <div
@@ -130,20 +141,6 @@
                   </li>
                 </ul>
               </div>
-            </div>
-            <div class="checkbox my-4 flex justify-start">
-              <input
-                id="decide-later"
-                v-model="isDecideLater"
-                type="checkbox"
-              />
-
-              <label class="" for="decide-later">
-                <div class="indicator mr-2 text-primary-lighter">
-                  <BaseIcon icon="uil:check" size="sm" />
-                </div>
-                <p class="text-sm">or you can decide the date later</p>
-              </label>
             </div>
           </div>
 
@@ -370,6 +367,12 @@ export default {
           this.resetSelectedTimeslot();
           this.date = null;
           this.finalDateStr = DECIDE_LATER_STR;
+        }
+
+        if (newVal === false && newVal !== oldVal) {
+          this.resetSelectedTimeslot();
+          this.date = null;
+          this.finalDateStr = '';
         }
       },
       immediate: true,

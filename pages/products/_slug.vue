@@ -699,7 +699,7 @@
       />
     </section>
 
-    <section v-if="randomPreviousCustomers" class="container my-12">
+    <section v-if="randomBrandCustomers" class="container my-12">
       <div
         class="space-y-4 bg-primary-light p-6 md:grid md:grid-cols-2 md:items-center md:gap-15 md:space-y-0 md:p-12 lg:p-15 xl:gap-18"
       >
@@ -1140,11 +1140,11 @@ export default {
 
     // random previous clients
     randomBrandCustomers() {
-      if (!this.brandCustomers) {
+      if (!this.brandCustomers || this.brandCustomers.length === 0) {
         return null;
       }
 
-      const customers = this.previousCustomers;
+      const customers = this.brandCustomers;
 
       const uniqueNames = [];
 
