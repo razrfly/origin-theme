@@ -308,10 +308,9 @@
                     product.pricePerPerson && variationCurrency === currency
                   "
                   class="text-xl"
-                  >{{
-                    formatMoney(product.pricePerPerson, currency, false)
-                  }}
-                  per person</span
+                  >From
+                  {{ formatMoney(product.pricePerPerson, currency, false) }} per
+                  person</span
                 >
                 <span v-else>{{
                   $t('products._slug.unavailableInCurrency', {
