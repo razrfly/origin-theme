@@ -371,7 +371,7 @@ export default {
 
         if (newVal === false && newVal !== oldVal) {
           this.resetSelectedTimeslot();
-          this.date = null;
+          this.date = this.defaultValue;
           this.finalDateStr = '';
         }
       },
