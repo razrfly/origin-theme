@@ -249,6 +249,12 @@
           "ui": "url",
           "required": true,
           "localized": false
+        },
+        {
+          "id": "company",
+          "label": "Company Name",
+          "type": "text",
+          "required": true
         }
       ],
       "admin_zone": "content"
