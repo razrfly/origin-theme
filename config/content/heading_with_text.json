@@ -23,7 +23,7 @@
         {
           "id": "description",
           "label": "Description text",
-          "type": "basic_html",
+          "type": "rich_html",
           "required": true,
           "localized": true
         }
