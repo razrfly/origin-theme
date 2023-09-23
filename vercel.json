@@ -4,14 +4,12 @@
       "src": "/blog",
       "dest": "https://blog.teamups.co/blog/"
     },
-
     {
       "src": "/blog/(.*?)([.]\\w{2,5})(\\?[^/]+)?",
       "dest": "https://blog.teamups.co/blog/$1$2$3"
     },
-
     {
-      "src": "/blog/([\\S\\s]+)",
+      "src": "/blog/([\\S\\s]+?)/?",
       "dest": "https://blog.teamups.co/blog/$1/"
     }
   ]
