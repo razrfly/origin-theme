@@ -705,7 +705,7 @@
         <h2
           class="mb-0 text-3xl font-semibold uppercase text-primary-darkest md:text-4xl lg:text-5xl xl:text-6xl"
         >
-          Over <b class="font-black text-accent-default">100 000+</b> managed
+          Over <b class="font-black text-accent-default">100,000+</b> managed
           events & <b class="font-black text-accent-default">2.5M+</b> happy
           players!
         </h2>
