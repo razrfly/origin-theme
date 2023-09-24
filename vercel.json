@@ -1,7 +1,7 @@
 {
   "routes": [
     {
-      "src": "/blog",
+      "src": "/blog/?",
       "dest": "https://blog.teamups.co/blog/"
     },
     {
