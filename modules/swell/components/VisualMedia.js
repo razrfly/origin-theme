@@ -54,7 +54,7 @@ export default {
     // Higher value = less compression, better quality, larger file size
     quality: {
       type: Number,
-      default: 90,
+      default: 100,
     },
     // Image widths to generate source urls for
     widths: {
