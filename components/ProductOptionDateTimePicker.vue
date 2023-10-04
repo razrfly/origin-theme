@@ -171,6 +171,7 @@ const MAX_DAYS = 180;
 const START_TIME = '9:00 AM';
 
 const DECIDE_LATER_STR = 'TBD';
+const DEFAULT_TIMEZONE_ID = 'CST6CDT';
 
 export default {
   name: 'OptionDateTimePicker',
@@ -435,6 +436,14 @@ export default {
       if (!id) return;
 
       const foundTz = timezonesJSON.find((tz) => tz.utc.includes(id));
+
+      if (!foundTz) {
+        const defaultTz = timezonesJSON.find((tz) =>
+          tz.utc.includes(DEFAULT_TIMEZONE_ID),
+        );
+
+        return defaultTz;
+      }
 
       return foundTz;
     },
