@@ -950,7 +950,7 @@ export default {
       return this.videoInfo ? this.videoInfo : null;
     },
     categoryLink() {
-      return `/categories/${this.productCategory.slug}`;
+      return `/categories/${this.productCategory.slug}/`;
     },
     productImages() {
       /**
