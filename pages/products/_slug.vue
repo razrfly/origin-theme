@@ -992,25 +992,28 @@ export default {
     },
 
     expandableDetailsInOrder() {
-      const details = this.product?.content?.expandableDetails;
+      const details = this.product.content.expandableDetails;
 
       if (!details) {
         return null;
       }
 
       const detailsWithPosition = [];
-      const detailsWithoutPosition = [];
+      const seenPositions = new Set();
 
-      details.forEach((d) => {
-        if (d?.position) {
-          detailsWithPosition.push(d);
-        } else {
-          detailsWithoutPosition.push(d);
-        }
-      });
+      // Reverse the order of details before processing
+      details
+        .slice()
+        .reverse()
+        .forEach((d) => {
+          if (d?.position && !seenPositions.has(d.position)) {
+            detailsWithPosition.push(d);
+            seenPositions.add(d.position);
+          }
+        });
       detailsWithPosition.sort((a, b) => a.position - b.position);
 
-      return [...detailsWithPosition, ...detailsWithoutPosition];
+      return detailsWithPosition;
     },
 
     productCategory() {
