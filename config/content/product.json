@@ -110,16 +110,6 @@
           "increment": 1
         }
       ],
-      "default": [
-        {
-          "label": "Test Details",
-          "details": "Birthday Party, Corporate Event, Wedding, etc."
-        },
-        {
-          "label": "Something goes here.",
-          "details": "Number of guests expected to attend."
-        }
-      ],
       "admin_zone": "content"
     },
     {
