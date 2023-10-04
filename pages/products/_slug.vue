@@ -254,7 +254,7 @@
                       </svg>
 
                       <NuxtLink
-                        :to="`/categories/${productCategory.slug}`"
+                        :to="categoryLink"
                         class="ml-1 w-max text-sm font-medium text-primary-dark md:ml-2"
                       >
                         {{ productCategory.name }}
@@ -949,7 +949,9 @@ export default {
     productVideo() {
       return this.videoInfo ? this.videoInfo : null;
     },
-
+    categoryLink() {
+      return `/categories/${this.productCategory.slug}`;
+    },
     productImages() {
       /**
        * @constant
