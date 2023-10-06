@@ -6,10 +6,7 @@
     description="No heading or reviews added"
   />
 
-  <section
-    v-else
-    :class="['container', 'relative', 'my-14', 'lg:my-16', `bg-${bgColor}`]"
-  >
+  <section v-else class="container relative my-14 lg:my-16">
     <!-- Reviews -->
     <div class="flex flex-col justify-center">
       <h2 v-if="heading" class="mb-12 text-center lg:text-4xl">
