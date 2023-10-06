@@ -6,7 +6,10 @@
     description="No heading or reviews added"
   />
 
-  <section v-else class="container relative my-14 lg:my-16">
+  <section
+    v-else
+    :class="['container', 'relative', 'my-14', 'lg:my-16', `bg-${bgColor}`]"
+  >
     <!-- Reviews -->
     <div class="flex flex-col justify-center">
       <h2 v-if="heading" class="mb-12 text-center lg:text-4xl">
@@ -103,6 +106,10 @@ export default {
     reviews: {
       type: Array,
       default: () => [],
+    },
+    bgColor: {
+      type: String,
+      default: 'primary-lightest',
     },
   },
 
